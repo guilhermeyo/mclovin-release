@@ -10,12 +10,20 @@ This repo hosts the prebuilt release binaries. Source code is private
 
 ## Install (Linux x86_64)
 
+The project is in alpha, so releases are tagged as pre-releases.
+Pin to the latest published tag (the one-liner does this for you):
+
 ```bash
-curl -L https://github.com/guilhermeyo/mclovin-release/releases/latest/download/mclovin-linux-x86_64 -o mclovin
+TAG=$(curl -s https://api.github.com/repos/guilhermeyo/mclovin-release/releases \
+  | grep -m1 '"tag_name"' | cut -d'"' -f4)
+curl -L "https://github.com/guilhermeyo/mclovin-release/releases/download/$TAG/mclovin-linux-x86_64" -o mclovin
 chmod +x mclovin
 sudo install -m 755 mclovin /usr/local/bin/mclovin
 mclovin setup
 ```
+
+Once 1.0 ships, replace the API hop with the simpler
+`/releases/latest/download/...` URL.
 
 `mclovin setup` registers mclovin as your default `http`/`https`
 handler. Click any link from then on and it gets routed by your
@@ -23,10 +31,10 @@ rules.
 
 ## Verify integrity
 
-Each release ships a SHA-256 next to the binary. Download both, then:
+Each release ships a SHA-256 next to the binary:
 
 ```bash
-curl -LO https://github.com/guilhermeyo/mclovin-release/releases/latest/download/mclovin-linux-x86_64.sha256
+curl -LO "https://github.com/guilhermeyo/mclovin-release/releases/download/$TAG/mclovin-linux-x86_64.sha256"
 sha256sum -c mclovin-linux-x86_64.sha256
 ```
 
