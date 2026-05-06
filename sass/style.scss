@@ -59,8 +59,8 @@ pre {
 }
 
 .hero-logo {
-  display: inline-block;
-  margin-bottom: 16px;
+  display: block;
+  margin: 0 auto 16px;
   width: clamp(56px, 10vw, 96px);
   height: auto;
 }
