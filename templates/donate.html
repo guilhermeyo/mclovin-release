@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock %}
+
+{% block content %}
+<section class="donate">
+  <h1 class="donate-title">{{ section.title }}</h1>
+  <p class="donate-intro">{{ section.extra.intro }}</p>
+
+  <div class="donate-block donate-primary">
+    <img class="donate-qr donate-qr-large" src="{{ get_url(path='btc-qr.svg') }}" alt="Bitcoin QR" width="160" height="160">
+    <div class="donate-label">{{ section.extra.btc_label }}</div>
+    <pre class="donate-addr donate-addr-primary" data-copy="{{ section.extra.btc_address }}">{{ section.extra.btc_address }}</pre>
+    <button type="button" class="donate-copy" data-target="prev">{{ section.extra.copy_btc }}</button>
+  </div>
+
+  <hr class="donate-divider">
+
+  <div class="donate-block donate-secondary">
+    <img class="donate-qr donate-qr-small" src="{{ get_url(path='pix-qr.svg') }}" alt="PIX QR" width="100" height="100">
+    <div class="donate-label">
+      {{ section.extra.pix_label }}
+      {% if section.extra.pix_label_suffix and section.extra.pix_label_suffix != "" %}
+        <span class="donate-label-suffix">{{ section.extra.pix_label_suffix }}</span>
+      {% endif %}
+    </div>
+    <pre class="donate-addr donate-addr-secondary" data-copy="{{ section.extra.pix_address }}">{{ section.extra.pix_address }}</pre>
+    <button type="button" class="donate-copy donate-copy-secondary" data-target="prev">{{ section.extra.copy_pix }}</button>
+  </div>
+</section>
+{% endblock %}
