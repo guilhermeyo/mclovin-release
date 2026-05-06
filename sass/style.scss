@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "CaskaydiaMono";
+  src: url("CaskaydiaMono.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 $bg: #0D1117;
 $accent: #F4CF45;
 $text: #e6edf3;
@@ -6,7 +14,7 @@ $border: #21262d;
 $border-strong: #30363d;
 $link: #58a6ff;
 
-$mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$mono: "CaskaydiaMono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 $serif: ui-serif, Georgia, "Times New Roman", serif;
 
 * { box-sizing: border-box; }
@@ -33,7 +41,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 32px 16px;
+  padding: 48px 16px 32px;
 }
 
 a { color: $link; text-decoration: none; }
@@ -53,30 +61,35 @@ pre {
 .hero-logo {
   display: inline-block;
   margin-bottom: 12px;
+  width: clamp(48px, 9vw, 64px);
+  height: auto;
 }
 
 .hero-wordmark {
   color: $accent;
-  font-size: 10px;
-  line-height: 1.05;
+  font-family: $mono;
+  font-size: clamp(14px, 6vw, 56px);
+  line-height: 1;
   letter-spacing: 0;
-  margin: 8px 0 24px;
+  margin: 4px 0 32px;
   white-space: pre;
-  overflow-x: auto;
+  display: inline-block;
 }
 
 .hero-tagline {
   font-family: $serif;
   font-weight: 400;
-  font-size: 22px;
+  font-size: clamp(18px, 3.2vw, 22px);
   color: #fff;
   margin: 0 0 6px;
+  padding: 0 8px;
 }
 
 .hero-subline {
   color: $muted;
-  font-size: 13px;
+  font-size: clamp(12px, 2vw, 13px);
   margin: 0 0 28px;
+  padding: 0 8px;
 }
 
 .install {
@@ -86,12 +99,13 @@ pre {
   border-radius: 6px;
   padding: 10px 56px 10px 14px;
   max-width: 480px;
+  width: 100%;
   margin: 0 auto 20px;
   text-align: left;
 }
 
 .install-cmd {
-  font-size: 13px;
+  font-size: clamp(11px, 2vw, 13px);
   color: #c9d1d9;
   white-space: nowrap;
   overflow-x: auto;
@@ -149,7 +163,7 @@ pre {
 .donate-title {
   font-family: $serif;
   font-weight: 400;
-  font-size: 28px;
+  font-size: clamp(22px, 5vw, 28px);
   color: #fff;
   margin: 0 0 8px;
 }
@@ -158,6 +172,7 @@ pre {
   color: $muted;
   font-size: 14px;
   margin: 0 0 32px;
+  padding: 0 8px;
 }
 
 .donate-block { padding: 8px 0; }
@@ -168,6 +183,8 @@ pre {
   background: #fff;
   padding: 8px;
   border-radius: 4px;
+  max-width: 100%;
+  height: auto;
 }
 
 .donate-qr-large { width: 160px; height: 160px; }
@@ -191,6 +208,7 @@ pre {
   font-size: 11px;
   color: #6e7681;
   margin-left: 4px;
+  display: inline-block;
 }
 
 .donate-addr {
@@ -232,19 +250,20 @@ pre {
 .manual {
   max-width: 480px;
   text-align: center;
+  padding: 0 8px;
 }
 
 .manual-title {
   font-family: $serif;
   font-weight: 400;
-  font-size: 26px;
+  font-size: clamp(22px, 5vw, 26px);
   color: #fff;
   margin: 0 0 16px;
 }
 
 .manual-body {
   color: $muted;
-  font-size: 15px;
+  font-size: clamp(13px, 2.5vw, 15px);
   margin: 0 0 12px;
 }
 
@@ -255,4 +274,11 @@ pre {
   padding: 2px 6px;
   color: $accent;
   font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  main { padding: 24px 12px; }
+  .install { padding-right: 50px; }
+  .install-copy { font-size: 10px; padding: 3px 6px; right: 6px; }
+  .donate-addr { font-size: 11px; padding: 6px 8px; }
 }
