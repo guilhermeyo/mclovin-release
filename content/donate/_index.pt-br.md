@@ -1,5 +1,5 @@
 +++
-title = "Apoiar"
+title = "Apoiar este projeto"
 template = "donate.html"
 
 [extra]
