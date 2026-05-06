@@ -228,3 +228,31 @@ pre {
 }
 
 .donate-secondary { opacity: 0.85; }
+
+.manual {
+  max-width: 480px;
+  text-align: center;
+}
+
+.manual-title {
+  font-family: $serif;
+  font-weight: 400;
+  font-size: 26px;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.manual-body {
+  color: $muted;
+  font-size: 15px;
+  margin: 0 0 12px;
+}
+
+.manual-hint code {
+  background: #161b22;
+  border: 1px solid $border-strong;
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: $accent;
+  font-size: 13px;
+}

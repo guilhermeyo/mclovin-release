@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock %}
+
+{% block content %}
+<section class="manual">
+  <h1 class="manual-title">{{ section.title }}</h1>
+  <p class="manual-body">{{ section.extra.body }}</p>
+  <p class="manual-hint"><code>{{ section.extra.hint }}</code></p>
+</section>
+{% endblock %}
