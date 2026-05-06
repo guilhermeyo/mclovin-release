@@ -11,5 +11,25 @@
   <main>
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="site-footer">
+    {% if lang == "en" %}
+      <span class="lang active">EN</span>
+    {% else %}
+      <a class="lang" href="/">EN</a>
+    {% endif %}
+    <span class="sep">·</span>
+    {% if lang == "pt-br" %}
+      <span class="lang active">PT</span>
+    {% else %}
+      <a class="lang" href="/pt-br/">PT</a>
+    {% endif %}
+    <span class="sep">·</span>
+    {% if lang == "es-es" %}
+      <span class="lang active">ES</span>
+    {% else %}
+      <a class="lang" href="/es-es/">ES</a>
+    {% endif %}
+  </footer>
 </body>
 </html>

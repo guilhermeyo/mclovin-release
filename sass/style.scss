@@ -127,3 +127,15 @@ pre {
 
 .hero-nav a { color: $accent; }
 .hero-nav .sep { margin: 0 8px; color: $border-strong; }
+
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: $muted;
+}
+
+.site-footer .lang { color: $muted; }
+.site-footer .lang.active { color: $accent; font-weight: bold; }
+.site-footer .sep { margin: 0 6px; color: $border-strong; }
+.site-footer a.lang:hover { color: $accent; text-decoration: none; }
