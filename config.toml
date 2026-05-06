@@ -1,0 +1,27 @@
+base_url = "https://mclovin.org"
+title = "mclovin"
+description = "Open every link in the right browser, profile, or app"
+default_language = "en"
+compile_sass = true
+build_search_index = false
+generate_feeds = false
+minify_html = true
+
+# i18n: pt-BR and es-ES (en is default, lives at root)
+[languages.pt-br]
+title = "mclovin"
+description = "Abra cada link no navegador, perfil ou app certo"
+generate_feeds = false
+build_search_index = false
+
+[languages.es-es]
+title = "mclovin"
+description = "Abre cada enlace en el navegador, perfil o app correcto"
+generate_feeds = false
+build_search_index = false
+
+[extra]
+# Brand palette (referenced from style.scss via SASS variables; kept here
+# for templates that need raw values too)
+color_bg = "#0D1117"
+color_accent = "#F4CF45"
