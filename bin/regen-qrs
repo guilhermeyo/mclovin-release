@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Regenerate QR code SVGs for the donate page.
+# Reads addresses from content/donate/_index.md (the EN version is source of truth;
+# the same addresses live in pt-br/ and es-es/ donate _index.md and must be kept in sync).
+#
+# Run from the repo root:
+#   bin/regen-qrs
+#
+# Requires: qrencode (sudo pacman -S qrencode)
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if ! command -v qrencode >/dev/null 2>&1; then
+  echo "error: qrencode is not installed. Run: sudo pacman -S qrencode" >&2
+  exit 1
+fi
+
+extract() {
+  # extract a TOML string value from content/donate/_index.md
+  local key="$1"
+  awk -v k="$key" -F' = ' '$1 == k { gsub(/^"|"$/, "", $2); print $2; exit }' content/donate/_index.md
+}
+
+BTC=$(extract "btc_address")
+PIX=$(extract "pix_address")
+
+if [ -z "$BTC" ] || [ -z "$PIX" ]; then
+  echo "error: could not extract btc_address or pix_address from content/donate/_index.md" >&2
+  exit 1
+fi
+
+echo "==> Generating BTC QR for: $BTC"
+qrencode -t SVG -o static/btc-qr.svg --foreground=0D1117 --background=FFFFFF "$BTC"
+
+echo "==> Generating PIX QR for: $PIX"
+qrencode -t SVG -o static/pix-qr.svg --foreground=0D1117 --background=FFFFFF "$PIX"
+
+echo "==> Done."
+echo "    Reminder: addresses also live in content/donate/_index.pt-br.md and content/donate/_index.es-es.md."
+echo "    Keep them in sync if you change them."
