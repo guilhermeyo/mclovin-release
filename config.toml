@@ -25,3 +25,13 @@ build_search_index = false
 # for templates that need raw values too)
 color_bg = "#0D1117"
 color_accent = "#F4CF45"
+
+# Latest published release. Update on each `bin/release` run.
+version = "v0.1.0-alpha.6"
+platform = "Linux x86_64"
+omarchy_url = "https://omarchy.org/"
+
+[extra.platform_note]
+en = "built on Omarchy · macOS / Windows soon"
+pt-br = "feito no Omarchy · macOS / Windows em breve"
+es-es = "hecho en Omarchy · macOS / Windows pronto"
