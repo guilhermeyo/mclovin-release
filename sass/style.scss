@@ -1,0 +1,45 @@
+$bg: #0D1117;
+$accent: #F4CF45;
+$text: #e6edf3;
+$muted: #8b949e;
+$border: #21262d;
+$border-strong: #30363d;
+$link: #58a6ff;
+
+$mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+$serif: ui-serif, Georgia, "Times New Roman", serif;
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: $bg;
+  color: $text;
+  font-family: $mono;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 16px;
+}
+
+a { color: $link; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+pre {
+  font-family: $mono;
+  margin: 0;
+}
