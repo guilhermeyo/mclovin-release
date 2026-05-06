@@ -2,6 +2,8 @@
 {% block title %}{{ section.title }} · {{ config.title }}{% endblock %}
 
 {% block content %}
+{% include "page-header.html" %}
+
 <section class="manual">
   <h1 class="manual-title">{{ section.title }}</h1>
   <p class="manual-body">{{ section.extra.body }}</p>

@@ -1,0 +1,6 @@
+{% set home_path = "/" if lang == config.default_language else "/" ~ lang ~ "/" %}
+<a href="{{ home_path }}" class="page-header" aria-label="mclovin home">
+  <img class="page-header-logo" src="{{ get_url(path='mclovin.svg') }}" alt="" width="40" height="40">
+  <pre class="page-header-wordmark" aria-hidden="true">█▀▄▀█ █▀▀ █   █▀█ █ █ █ █▄ █
+█ ▀ █ █▄▄ █▄▄ █▄█ ▀▄▀ █ █ ▀█</pre>
+</a>

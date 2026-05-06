@@ -180,6 +180,36 @@ pre {
 .site-footer .sep { margin: 0 6px; color: $border-strong; }
 .site-footer a.lang:hover { color: $accent; text-decoration: none; }
 
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 32px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.page-header:hover { text-decoration: none; }
+.page-header:hover .page-header-wordmark { opacity: 1; }
+.page-header-logo {
+  display: block;
+  width: clamp(40px, 6vw, 56px);
+  height: auto;
+  margin-bottom: 6px;
+}
+.page-header-wordmark {
+  color: $accent;
+  font-family: $mono;
+  font-size: clamp(8px, 1.4vw, 14px);
+  line-height: 1;
+  letter-spacing: 0;
+  margin: 0;
+  white-space: pre;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
 .donate {
   max-width: 420px;
   width: 100%;
@@ -201,31 +231,30 @@ pre {
   padding: 0 8px;
 }
 
-.donate-block { padding: 8px 0; }
+.donate-block {
+  padding: 8px 0;
+  text-align: center;
+}
 
 .donate-qr {
   display: block;
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   background: #fff;
   padding: 8px;
   border-radius: 4px;
+  width: 160px;
+  height: 160px;
   max-width: 100%;
-  height: auto;
 }
 
-.donate-qr-large { width: 160px; height: 160px; }
-.donate-qr-small { width: 100px; height: 100px; }
-
 .donate-label {
+  color: $accent;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 13px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
-
-.donate-primary .donate-label { color: $accent; }
-.donate-secondary .donate-label { color: $muted; font-weight: normal; letter-spacing: 1px; }
 
 .donate-label-suffix {
   text-transform: none;
@@ -239,39 +268,37 @@ pre {
 
 .donate-addr {
   background: #161b22;
+  border: 1px solid $accent;
   border-radius: 4px;
   padding: 8px 10px;
   font-size: 12px;
   color: #c9d1d9;
   word-break: break-all;
-  margin: 0 auto 8px;
+  margin: 0 auto 10px;
   display: inline-block;
   max-width: 100%;
 }
 
-.donate-addr-primary { border: 1px solid $accent; }
-.donate-addr-secondary { border: 1px solid $border-strong; font-size: 11px; color: $muted; }
-
 .donate-copy {
   background: transparent;
-  border: none;
-  color: $link;
+  border: 1px solid $border-strong;
+  color: $muted;
   font-family: $mono;
   font-size: 12px;
   cursor: pointer;
-  padding: 4px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-.donate-copy.copied { color: $accent; }
-.donate-copy-secondary { color: $border-strong; font-size: 11px; }
+.donate-copy:hover { color: $accent; border-color: $accent; }
+.donate-copy.copied { color: $accent; border-color: $accent; }
 
 .donate-divider {
   border: none;
   border-top: 1px solid $border;
-  margin: 28px 0 24px;
+  margin: 32px 0 24px;
 }
-
-.donate-secondary { opacity: 0.85; }
 
 .manual {
   max-width: 480px;
