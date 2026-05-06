@@ -43,3 +43,87 @@ pre {
   font-family: $mono;
   margin: 0;
 }
+
+.hero {
+  text-align: center;
+  max-width: 720px;
+  width: 100%;
+}
+
+.hero-logo {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.hero-wordmark {
+  color: $accent;
+  font-size: 10px;
+  line-height: 1.05;
+  letter-spacing: 0;
+  margin: 8px 0 24px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.hero-tagline {
+  font-family: $serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.hero-subline {
+  color: $muted;
+  font-size: 13px;
+  margin: 0 0 28px;
+}
+
+.install {
+  position: relative;
+  background: #161b22;
+  border: 1px solid $accent;
+  border-radius: 6px;
+  padding: 10px 56px 10px 14px;
+  max-width: 480px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+
+.install-cmd {
+  font-size: 13px;
+  color: #c9d1d9;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.install-prompt {
+  color: $accent;
+  margin-right: 6px;
+}
+
+.install-copy {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 1px solid $border-strong;
+  color: $muted;
+  font-family: $mono;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.install-copy:hover { color: $accent; border-color: $accent; }
+.install-copy.copied { color: $accent; border-color: $accent; }
+
+.hero-nav {
+  font-size: 14px;
+  color: $accent;
+}
+
+.hero-nav a { color: $accent; }
+.hero-nav .sep { margin: 0 8px; color: $border-strong; }

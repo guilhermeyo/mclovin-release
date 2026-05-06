@@ -1,4 +1,35 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>{{ section.title | default(value=config.title) }}</h1>
+<section class="hero">
+  <img class="hero-logo" src="{{ get_url(path='mclovin.svg') }}" alt="mclovin" width="56" height="56">
+
+  <pre class="hero-wordmark" aria-hidden="true">
+███╗   ███╗ ██████╗██╗      ██████╗ ██╗   ██╗██╗███╗   ██╗
+████╗ ████║██╔════╝██║     ██╔═══██╗██║   ██║██║████╗  ██║
+██╔████╔██║██║     ██║     ██║   ██║██║   ██║██║██╔██╗ ██║
+██║╚██╔╝██║██║     ██║     ██║   ██║╚██╗ ██╔╝██║██║╚██╗██║
+██║ ╚═╝ ██║╚██████╗███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚████║
+╚═╝     ╚═╝ ╚═════╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝  ╚═══╝</pre>
+
+  <h1 class="hero-tagline">{{ section.extra.tagline }}</h1>
+  <p class="hero-subline">{{ section.extra.subline }}</p>
+
+  <div class="install" data-copy="{{ section.extra.install_cmd }}">
+    <pre class="install-cmd"><span class="install-prompt">$</span> {{ section.extra.install_cmd }}</pre>
+    <button type="button" class="install-copy" aria-label="Copy install command">copy</button>
+  </div>
+
+  <nav class="hero-nav">
+    {% if lang == config.default_language %}
+      <a href="/manual/">{{ section.extra.nav_manual }}</a>
+      <span class="sep">·</span>
+      <a href="/donate/">{{ section.extra.nav_donate }}</a>
+    {% else %}
+      <a href="/{{ lang }}/manual/">{{ section.extra.nav_manual }}</a>
+      <span class="sep">·</span>
+      <a href="/{{ lang }}/donate/">{{ section.extra.nav_donate }}</a>
+    {% endif %}
+  </nav>
+</section>
 {% endblock %}
