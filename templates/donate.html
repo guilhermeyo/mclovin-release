@@ -11,8 +11,10 @@
   <div class="donate-block">
     <img class="donate-qr" src="{{ get_url(path='btc-qr.svg', cachebust=true) }}" alt="Bitcoin QR" width="160" height="160">
     <div class="donate-label">{{ section.extra.btc_label }}</div>
-    <pre class="donate-addr" data-copy="{{ section.extra.btc_address }}">{{ section.extra.btc_address }}</pre>
-    <button type="button" class="donate-copy" data-target="prev">{{ section.extra.copy_btc }}</button>
+    <div class="donate-addr-wrap" data-copy="{{ section.extra.btc_address }}">
+      <pre class="donate-addr">{{ section.extra.btc_address }}</pre>
+      <button type="button" class="donate-copy">{{ section.extra.copy_label }}</button>
+    </div>
   </div>
 
   <hr class="donate-divider">
@@ -25,8 +27,10 @@
         <span class="donate-label-suffix">{{ section.extra.pix_label_suffix }}</span>
       {% endif %}
     </div>
-    <pre class="donate-addr" data-copy="{{ section.extra.pix_address }}">{{ section.extra.pix_address }}</pre>
-    <button type="button" class="donate-copy" data-target="prev">{{ section.extra.copy_pix }}</button>
+    <div class="donate-addr-wrap" data-copy="{{ section.extra.pix_address }}">
+      <pre class="donate-addr">{{ section.extra.pix_address }}</pre>
+      <button type="button" class="donate-copy">{{ section.extra.copy_label }}</button>
+    </div>
   </div>
 </section>
 {% endblock %}

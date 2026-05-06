@@ -9,6 +9,5 @@ btc_address = "bc1qexampleplaceholderaddressreplaceme00000"
 pix_label = "PIX"
 pix_label_suffix = ""
 pix_address = "apoie@mclovin.org"
-copy_btc = "copiar endereço"
-copy_pix = "copiar"
+copy_label = "copiar"
 +++

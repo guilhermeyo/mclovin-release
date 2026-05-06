@@ -266,28 +266,40 @@ pre {
   display: inline-block;
 }
 
-.donate-addr {
+.donate-addr-wrap {
+  position: relative;
   background: #161b22;
   border: 1px solid $accent;
-  border-radius: 4px;
-  padding: 8px 10px;
+  border-radius: 6px;
+  padding: 10px 64px 10px 14px;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto 4px;
+  text-align: left;
+}
+
+.donate-addr {
+  font-family: $mono;
   font-size: 12px;
   color: #c9d1d9;
-  word-break: break-all;
-  margin: 0 auto 10px;
-  display: inline-block;
-  max-width: 100%;
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
 .donate-copy {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
   background: transparent;
   border: 1px solid $border-strong;
   color: $muted;
   font-family: $mono;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 6px 14px;
+  font-size: 11px;
+  padding: 4px 10px;
   border-radius: 4px;
+  cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
 }
 
