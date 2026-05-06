@@ -1,42 +1,126 @@
-#!/usr/bin/env bash
-# Regenerate QR code SVGs for the donate page.
-# Reads addresses from content/donate/_index.md (the EN version is source of truth;
-# the same addresses live in pt-br/ and es-es/ donate _index.md and must be kept in sync).
-#
-# Run from the repo root:
-#   bin/regen-qrs
-#
-# Requires: qrencode (sudo pacman -S qrencode)
+#!/usr/bin/env python3
+"""
+Generate branded QR code SVGs for the donate page.
 
-set -euo pipefail
+Reads addresses from content/donate/_index.md (the EN version is source of
+truth — the same addresses live in pt-br/ and es-es/ donate _index.md and
+must be kept in sync).
 
-cd "$(dirname "$0")/.."
+Usage (run from repo root):
+    bin/regen-qrs
 
-if ! command -v qrencode >/dev/null 2>&1; then
-  echo "error: qrencode is not installed. Run: sudo pacman -S qrencode" >&2
-  exit 1
-fi
+Each QR uses high error correction (level H, 30% recoverable) so the
+embedded mclovin.svg logo in the center doesn't break scanning.
 
-extract() {
-  # extract a TOML string value from content/donate/_index.md
-  local key="$1"
-  awk -v k="$key" -F' = ' '$1 == k { gsub(/^"|"$/, "", $2); print $2; exit }' content/donate/_index.md
-}
+Requires: qrencode (sudo pacman -S qrencode), python3 (stdlib only).
+"""
+import re
+import subprocess
+import sys
+from pathlib import Path
 
-BTC=$(extract "btc_address")
-PIX=$(extract "pix_address")
+REPO = Path(__file__).resolve().parent.parent
+LOGO_SVG = REPO / "static" / "mclovin.svg"
+DONATE_MD = REPO / "content" / "donate" / "_index.md"
 
-if [ -z "$BTC" ] || [ -z "$PIX" ]; then
-  echo "error: could not extract btc_address or pix_address from content/donate/_index.md" >&2
-  exit 1
-fi
+# Brand palette
+QR_DARK = "0D1117"
+QR_LIGHT = "FFFFFF"
 
-echo "==> Generating BTC QR for: $BTC"
-qrencode -t SVG -o static/btc-qr.svg --foreground=0D1117 --background=FFFFFF "$BTC"
+# Logo overlay sizing (relative to QR width).
+LOGO_SIZE_PCT = 0.22
+LOGO_PAD_PCT = 0.04
 
-echo "==> Generating PIX QR for: $PIX"
-qrencode -t SVG -o static/pix-qr.svg --foreground=0D1117 --background=FFFFFF "$PIX"
 
-echo "==> Done."
-echo "    Reminder: addresses also live in content/donate/_index.pt-br.md and content/donate/_index.es-es.md."
-echo "    Keep them in sync if you change them."
+def extract_address(key: str) -> str:
+    pattern = re.compile(rf'^{re.escape(key)}\s*=\s*"([^"]+)"', re.MULTILINE)
+    m = pattern.search(DONATE_MD.read_text(encoding="utf-8"))
+    if not m:
+        sys.exit(f"error: could not extract {key} from {DONATE_MD}")
+    return m.group(1)
+
+
+def extract_logo_inner() -> str:
+    """Return the inner content of mclovin.svg (everything inside <svg>...</svg>)."""
+    raw = LOGO_SVG.read_text(encoding="utf-8")
+    m = re.search(r"<svg[^>]*>(.*)</svg>", raw, re.DOTALL)
+    if not m:
+        sys.exit(f"error: malformed logo SVG at {LOGO_SVG}")
+    return m.group(1).strip()
+
+
+def generate(data: str, output: Path) -> None:
+    # Generate base QR at error level H (max recoverable: 30%).
+    subprocess.run(
+        [
+            "qrencode",
+            "-l", "H",
+            "-t", "SVG",
+            "-o", str(output),
+            "--foreground=" + QR_DARK,
+            "--background=" + QR_LIGHT,
+            data,
+        ],
+        check=True,
+    )
+
+    svg = output.read_text(encoding="utf-8")
+
+    # qrencode emits SVG with viewBox="0 0 W H". Use viewBox numbers
+    # (always present, unitless) so positioning is robust to whatever
+    # unit qrencode chose for the width/height attrs.
+    vb = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', svg)
+    if not vb:
+        sys.exit(f"error: no viewBox in qrencode output {output}")
+    w, h = float(vb.group(1)), float(vb.group(2))
+
+    logo_size = w * LOGO_SIZE_PCT
+    pad = w * LOGO_PAD_PCT
+    bg_size = logo_size + pad * 2
+    bg_x = (w - bg_size) / 2
+    bg_y = (h - bg_size) / 2
+    logo_x = bg_x + pad
+    logo_y = bg_y + pad
+
+    # mclovin.svg's intrinsic viewBox is "0 0 64 64". Scale to logo_size
+    # and translate to logo_x/logo_y. Wrapping in a <g transform> avoids
+    # touching the inner geometry.
+    scale = logo_size / 64.0
+    logo_inner = extract_logo_inner()
+
+    overlay = (
+        f'<rect x="{bg_x:.2f}" y="{bg_y:.2f}" '
+        f'width="{bg_size:.2f}" height="{bg_size:.2f}" '
+        f'fill="#FFFFFF" rx="3"/>'
+        f'<g transform="translate({logo_x:.2f} {logo_y:.2f}) scale({scale:.4f})">'
+        f"{logo_inner}"
+        f"</g>"
+    )
+
+    svg = svg.replace("</svg>", overlay + "</svg>")
+    output.write_text(svg, encoding="utf-8")
+    print(f"==> {output.name} ready ({len(data)} chars, logo embedded)")
+
+
+def main() -> None:
+    if subprocess.run(["which", "qrencode"], capture_output=True).returncode != 0:
+        sys.exit("error: qrencode not installed (sudo pacman -S qrencode)")
+
+    btc = extract_address("btc_address")
+    pix = extract_address("pix_address")
+
+    print(f"==> BTC: {btc}")
+    generate(btc, REPO / "static" / "btc-qr.svg")
+
+    print(f"==> PIX: {pix}")
+    generate(pix, REPO / "static" / "pix-qr.svg")
+
+    print(
+        "==> Done. Reminder: keep addresses in sync across "
+        "content/donate/_index.md, content/donate/_index.pt-br.md, "
+        "content/donate/_index.es-es.md."
+    )
+
+
+if __name__ == "__main__":
+    main()
