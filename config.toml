@@ -28,10 +28,18 @@ color_accent = "#F4CF45"
 
 # Latest published release. Update on each `bin/release` run.
 version = "v0.1.0-alpha.6"
-platform = "Linux x86_64"
 omarchy_url = "https://omarchy.org/"
 
-[extra.platform_note]
-en = "built on Omarchy · macOS / Windows soon"
-pt-br = "feito no Omarchy · macOS / Windows em breve"
-es-es = "hecho en Omarchy · macOS / Windows pronto"
+# Platform availability — kept prominent in the hero (not the footer)
+# so visitors can't miss the Linux-only restriction before they paste
+# the install one-liner.
+[extra.platform_warning]
+en = "Linux x86_64 only · macOS / Windows coming soon"
+pt-br = "Apenas Linux x86_64 · macOS / Windows em breve"
+es-es = "Solo Linux x86_64 · macOS / Windows pronto"
+
+# Footer credit line.
+[extra.built_on]
+en = "built on Omarchy"
+pt-br = "feito no Omarchy"
+es-es = "hecho en Omarchy"

@@ -22,9 +22,7 @@
     <div class="footer-version">
       {{ config.extra.version }}
       <span class="sep">·</span>
-      {{ config.extra.platform }}
-      <span class="sep">·</span>
-      <a href="{{ config.extra.omarchy_url }}" rel="noopener">{{ config.extra.platform_note[lang] }}</a>
+      <a href="{{ config.extra.omarchy_url }}" rel="noopener">{{ config.extra.built_on[lang] }}</a>
     </div>
     <div class="footer-langs">
       {% if lang == "en" %}
