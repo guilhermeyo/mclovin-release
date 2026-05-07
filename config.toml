@@ -29,6 +29,7 @@ color_accent = "#F4CF45"
 # Latest published release. Update on each `bin/release` run.
 version = "v0.1.0-alpha.6"
 omarchy_url = "https://omarchy.org/"
+rust_url = "https://rust-lang.org/"
 
 # Platform availability — kept prominent in the hero (not the footer)
 # so visitors can't miss the Linux-only restriction before they paste
@@ -43,3 +44,8 @@ es-es = "Solo Linux x86_64 · macOS / Windows pronto"
 en = "built on Omarchy"
 pt-br = "feito no Omarchy"
 es-es = "hecho en Omarchy"
+
+[extra.made_in_rust]
+en = "made in Rust"
+pt-br = "feito em Rust"
+es-es = "hecho en Rust"
