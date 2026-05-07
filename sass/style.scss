@@ -285,6 +285,9 @@ pre {
   margin: 0;
   white-space: nowrap;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
 }
 
 .donate-copy {
