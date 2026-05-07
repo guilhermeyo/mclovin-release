@@ -33,20 +33,21 @@ one-liner pins to the latest published tag:
 ```bash
 TAG=$(curl -s https://api.github.com/repos/guilhermeyo/mclovin-release/releases \
   | grep -m1 '"tag_name"' | cut -d'"' -f4)
-mkdir -p ~/.local/bin
-curl -L "https://github.com/guilhermeyo/mclovin-release/releases/download/$TAG/mclovin-linux-x86_64" -o ~/.local/bin/mclovin
-chmod +x ~/.local/bin/mclovin
-~/.local/bin/mclovin setup
+curl -L "https://github.com/guilhermeyo/mclovin-release/releases/download/$TAG/mclovin-linux-x86_64" -o mclovin
+chmod +x mclovin
+./mclovin setup
 ```
 
-The binary lives in `~/.local/bin/` so future updates from inside the
-app work without sudo. Make sure `~/.local/bin/` is on your `$PATH` —
-most modern distros do this automatically; if `mclovin --version`
-doesn't work after install, add `export PATH="$HOME/.local/bin:$PATH"`
-to your shell profile.
+`mclovin setup` is self-installing: it copies the binary to
+`~/.local/bin/mclovin` (creating the directory if needed) and
+registers mclovin as your system default `http`/`https` handler.
+Click any link from then on and it gets routed by your rules.
 
-`mclovin setup` registers mclovin as your default `http`/`https`
-handler. Click any link from then on and it gets routed by your rules.
+`~/.local/bin/` is on `$PATH` on every modern Linux distro. If
+`mclovin --version` doesn't work after `setup`, add
+`export PATH="$HOME/.local/bin:$PATH"` to your shell profile. The
+install path is user-local so future updates from inside the app
+don't need sudo.
 
 Once 1.0 ships, the API hop will be replaced with the simpler
 `/releases/latest/download/...` URL.
@@ -68,7 +69,7 @@ Rules live at `~/.config/mclovin/rules.toml`. Most rules are simple
 match → command pairs:
 
 ```toml
-default = "brave"  # fallback when nothing matches
+fallback_browser = "brave"  # used when nothing matches
 
 [[handler]]
 match = "github.com"
