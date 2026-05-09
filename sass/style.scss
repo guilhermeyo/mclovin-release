@@ -316,130 +316,32 @@ pre {
 }
 
 .manual {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 16px;
-  text-align: left;
+  max-width: 480px;
+  text-align: center;
+  padding: 0 8px;
 }
-
-.manual-header { margin-bottom: 28px; }
 
 .manual-title {
   font-family: $serif;
   font-weight: 400;
-  font-size: clamp(28px, 6vw, 40px);
+  font-size: clamp(22px, 5vw, 26px);
   color: #fff;
-  margin: 0;
-}
-
-.manual-toc {
-  background: #161b22;
-  border: 1px solid $border-strong;
-  border-radius: 6px;
-  padding: 14px 20px;
-  margin: 0 0 36px;
-  font-size: 13px;
-
-  ol {
-    margin: 0;
-    padding-left: 20px;
-    color: $muted;
-  }
-
-  li { margin: 4px 0; }
-
-  a {
-    color: $muted;
-    text-decoration: none;
-    &:hover { color: $accent; }
-  }
+  margin: 0 0 16px;
 }
 
 .manual-body {
   color: $muted;
-  font-size: clamp(14px, 2.5vw, 15px);
-  line-height: 1.6;
+  font-size: clamp(13px, 2.5vw, 15px);
+  margin: 0 0 12px;
+}
 
-  h2 {
-    font-family: $serif;
-    font-weight: 400;
-    color: #fff;
-    font-size: clamp(20px, 4vw, 24px);
-    margin: 40px 0 14px;
-    scroll-margin-top: 16px;
-  }
-
-  h3 {
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 24px 0 10px;
-  }
-
-  p { margin: 0 0 14px; }
-
-  a {
-    color: $accent;
-    text-decoration: none;
-    &:hover { text-decoration: underline; }
-  }
-
-  ul, ol {
-    margin: 0 0 14px;
-    padding-left: 22px;
-  }
-
-  li { margin: 4px 0; }
-
-  code {
-    background: #161b22;
-    border: 1px solid $border-strong;
-    border-radius: 3px;
-    padding: 1px 5px;
-    color: $accent;
-    font-size: 0.9em;
-  }
-
-  pre {
-    background: #161b22;
-    border: 1px solid $border-strong;
-    border-radius: 6px;
-    padding: 14px 16px;
-    overflow-x: auto;
-    margin: 0 0 16px;
-    font-size: 13px;
-    line-height: 1.5;
-
-    code {
-      background: transparent;
-      border: 0;
-      padding: 0;
-      color: inherit;
-      font-size: inherit;
-    }
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 0 18px;
-    font-size: 13px;
-  }
-
-  th, td {
-    text-align: left;
-    padding: 8px 10px;
-    border-bottom: 1px solid $border-strong;
-    vertical-align: top;
-  }
-
-  th {
-    color: #fff;
-    font-weight: 600;
-    border-bottom-color: $accent;
-  }
-
-  td code { white-space: nowrap; }
+.manual-hint code {
+  background: #161b22;
+  border: 1px solid $border-strong;
+  border-radius: 3px;
+  padding: 2px 6px;
+  color: $accent;
+  font-size: 13px;
 }
 
 @media (max-width: 480px) {
