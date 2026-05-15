@@ -43,55 +43,55 @@ Same mclovin, two paths: a GUI you drive with arrows + Enter, or a CLI for scrip
 
 **1. Picker — when you click an unmatched link**
 
-![mclovin picker](/manual/01-picker-en.png)
+![mclovin picker](https://cdn.guilherme44.com/mclovin/manual/01-picker-en.png)
 
 Whenever a URL doesn't match any rule in `rules.toml`, the picker jumps in. URL at the top, detected browsers below. ↑/↓ or k/j to navigate, Enter to open. `Ctrl+,` takes you into Settings without losing the URL.
 
 **2. Settings — `mclovin settings`**
 
-![Main menu](/manual/02-settings-main-en.png)
+![Main menu](https://cdn.guilherme44.com/mclovin/manual/02-settings-main-en.png)
 
 The hub. Each row leads to a sub-menu: rules, default browser, doctor, language, updates. ↑/↓ navigates, Enter activates, q/Esc backs out.
 
 **3. Manage rules**
 
-![Rules list](/manual/03-rules-list-en.png)
+![Rules list](https://cdn.guilherme44.com/mclovin/manual/03-rules-list-en.png)
 
 Lists every rule: pattern on the left, command or browser on the right. `a` adds, `e` or Enter edits, `d` deletes (with a confirm prompt), `J/K` reorders.
 
 **4. Add / edit a rule**
 
-![Rule form](/manual/04-form-add-en.png)
+![Rule form](https://cdn.guilherme44.com/mclovin/manual/04-form-add-en.png)
 
 Three match kinds: **URL contains** (substring), **URL starts with** (host + path), **Regex** (full control). Pattern list below — Tab walks them and lands on `+ Add pattern (Enter)`. The "Test with a URL" field validates in real time which pattern would match.
 
 **5. Leaving a form with unsaved changes**
 
-![Unsaved-changes modal](/manual/05-modal-unsaved-en.png)
+![Unsaved-changes modal](https://cdn.guilherme44.com/mclovin/manual/05-modal-unsaved-en.png)
 
 Esc on a dirty form opens this guard. Keep editing (Esc) is the default and safe. Save (S) validates and persists. Save as draft parks everything in a draft that resumes next time. Discard changes, split off in red, throws the edits away.
 
 **6. Updates — `Ctrl+U` from any screen**
 
-![Updates screen](/manual/06-updates-en.png)
+![Updates screen](https://cdn.guilherme44.com/mclovin/manual/06-updates-en.png)
 
 Shows current version, when it was last checked, and — when a new release is up — an "Install now" button that downloads the binary, verifies the `sha256`, and runs the restart cycle with a progress bar and countdown.
 
 **7. Default browser — `Ctrl+D` from any screen**
 
-![Default browser](/manual/07-default-browser-en.png)
+![Default browser](https://cdn.guilherme44.com/mclovin/manual/07-default-browser-en.png)
 
 Lists detected browsers; the marked line is the system's current handler. Enter on another entry swaps via `xdg-mime`/`xdg-settings`. mclovin sits at the top as "required" — it has to be the default for routing to do anything.
 
 **8. Doctor**
 
-![Doctor](/manual/08-doctor-en.png)
+![Doctor](https://cdn.guilherme44.com/mclovin/manual/08-doctor-en.png)
 
 Checks handler registration, `rules.toml` integrity, and detected browsers. Each green line is OK; if anything turns red, it prints the exact command to fix it.
 
 **9. Language**
 
-![Language picker](/manual/09-language-en.png)
+![Language picker](https://cdn.guilherme44.com/mclovin/manual/09-language-en.png)
 
 Three languages today. Switching is instant — no need to restart the GUI.
 

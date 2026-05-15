@@ -43,55 +43,55 @@ O mclovin é a mesma coisa por dois caminhos: a GUI com setas + Enter, ou a CLI 
 
 **1. Picker — quando você clica num link sem regra**
 
-![Picker do mclovin](/manual/01-picker-pt-br.png)
+![Picker do mclovin](https://cdn.guilherme44.com/mclovin/manual/01-picker-pt-br.png)
 
 Sempre que uma URL não bate em nenhuma regra do `rules.toml`, o picker pula na frente. Mostra a URL no topo, lista os navegadores detectados embaixo. ↑/↓ ou k/j navega, Enter abre. `Ctrl+,` te leva pra Configurações sem perder a URL.
 
 **2. Configurações — `mclovin settings`**
 
-![Menu principal](/manual/02-settings-main-pt-br.png)
+![Menu principal](https://cdn.guilherme44.com/mclovin/manual/02-settings-main-pt-br.png)
 
 O hub central. Cada linha leva a um sub-menu: regras, navegador padrão, diagnóstico, idioma, atualizações. ↑/↓ navega, Enter ativa, q/Esc volta.
 
 **3. Gerenciar regras**
 
-![Lista de regras](/manual/03-rules-list-pt-br.png)
+![Lista de regras](https://cdn.guilherme44.com/mclovin/manual/03-rules-list-pt-br.png)
 
 Lista cada regra: padrão à esquerda, comando ou navegador à direita. `a` adiciona, `e` ou Enter edita, `d` deleta (pede confirmação), `J/K` reordena.
 
 **4. Adicionar / editar uma regra**
 
-![Formulário de regra](/manual/04-form-add-pt-br.png)
+![Formulário de regra](https://cdn.guilherme44.com/mclovin/manual/04-form-add-pt-br.png)
 
 Três modos de combinar a URL: **URL contém** (substring), **URL começa com** (host + path), **Regex** (poder total). Lista de padrões abaixo — Tab navega entre eles e até o `+ Adicionar padrão (Enter)`. O campo "Testar com uma URL" valida em tempo real qual padrão bateria.
 
 **5. Saindo com alterações não salvas**
 
-![Modal de alterações](/manual/05-modal-unsaved-pt-br.png)
+![Modal de alterações](https://cdn.guilherme44.com/mclovin/manual/05-modal-unsaved-pt-br.png)
 
 Esc num formulário sujo abre essa proteção. Continuar editando (Esc) é o default e seguro. Salvar (S) valida e persiste. Salvar rascunho parqueia tudo num draft que volta na próxima abertura. Descartar mudanças, separado em vermelho, joga fora.
 
 **6. Atualizações — `Ctrl+U` de qualquer tela**
 
-![Tela de atualizações](/manual/06-updates-pt-br.png)
+![Tela de atualizações](https://cdn.guilherme44.com/mclovin/manual/06-updates-pt-br.png)
 
 Mostra a versão atual, quando foi o último check, e — quando tem release nova — um botão "Instalar agora" que baixa, valida o `sha256`, e dispara o ciclo de restart com countdown e barra de progresso.
 
 **7. Navegador padrão — `Ctrl+D` de qualquer tela**
 
-![Navegador padrão](/manual/07-default-browser-pt-br.png)
+![Navegador padrão](https://cdn.guilherme44.com/mclovin/manual/07-default-browser-pt-br.png)
 
 Lista os navegadores detectados; a linha marcada é o handler atual do sistema. Enter em outra entrada troca via `xdg-mime`/`xdg-settings`. O mclovin sempre aparece no topo como "obrigatório" — ele precisa ser o padrão pra qualquer roteamento rolar.
 
 **8. Diagnóstico**
 
-![Doctor](/manual/08-doctor-pt-br.png)
+![Doctor](https://cdn.guilherme44.com/mclovin/manual/08-doctor-pt-br.png)
 
 Checa registro como handler, integridade do `rules.toml`, e navegadores detectados. Cada linha em verde é OK; se algo aparecer em vermelho, mostra o comando exato pra arrumar.
 
 **9. Idioma**
 
-![Picker de idioma](/manual/09-language-pt-br.png)
+![Picker de idioma](https://cdn.guilherme44.com/mclovin/manual/09-language-pt-br.png)
 
 Três idiomas hoje. A troca é instantânea — não precisa reiniciar a GUI.
 
