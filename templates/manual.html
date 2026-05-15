@@ -4,9 +4,23 @@
 {% block content %}
 {% include "page-header.html" %}
 
-<section class="manual">
-  <h1 class="manual-title">{{ section.title }}</h1>
-  <p class="manual-body">{{ section.extra.body }}</p>
-  <p class="manual-hint"><code>{{ section.extra.hint }}</code></p>
-</section>
+<article class="manual">
+  <header class="manual-header">
+    <h1 class="manual-title">{{ section.title }}</h1>
+  </header>
+
+  {% if section.toc %}
+  <nav class="manual-toc" aria-label="{{ section.extra.toc_label | default(value='Sumário') }}">
+    <ol>
+      {% for h1 in section.toc %}
+      <li><a href="#{{ h1.id }}">{{ h1.title }}</a></li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
+
+  <div class="manual-body">
+    {{ section.content | safe }}
+  </div>
+</article>
 {% endblock %}

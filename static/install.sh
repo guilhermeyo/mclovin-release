@@ -76,7 +76,17 @@ curl -fsSL -o "${TMP}/${SHA_ASSET}" "${DL_BASE}/${SHA_ASSET}"
 install -m 755 "${TMP}/${ASSET}" "${INSTALL_DIR}/${BINARY_NAME}"
 
 echo "==> Installed: ${INSTALL_DIR}/${BINARY_NAME}"
+
+# Register as default browser + drop the .desktop entry in one go.
+# `mclovin setup` is idempotent — running it again on an already-set
+# install is a no-op, so re-running this script is safe.
 echo
-echo "Next steps:"
-echo "  ${BINARY_NAME} setup    # register as default browser"
-echo "  ${BINARY_NAME} doctor   # verify install"
+if "${INSTALL_DIR}/${BINARY_NAME}" setup >/dev/null 2>&1; then
+  echo "==> Registered as default browser (mclovin.desktop installed)"
+else
+  echo "!!  Auto-setup failed. Run \`${BINARY_NAME} setup\` manually to register" >&2
+  echo "    as default. \`${BINARY_NAME} doctor\` shows what's missing." >&2
+fi
+echo
+echo "Ready. Open mclovin from your app launcher (Walker, rofi, GNOME/KDE menu)"
+echo "or run: ${BINARY_NAME} settings"

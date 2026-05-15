@@ -27,22 +27,49 @@
       <a href="{{ config.extra.rust_url }}" rel="noopener">{{ config.extra.made_in_rust[lang] }}</a>
     </div>
     <div class="footer-langs">
+      {# Build per-lang URL of the equivalent page in each language so
+         switching languages keeps the reader on the same content (e.g.
+         /manual/ stays /manual/, not bouncing back to home). Falls back
+         to the language home when a translation isn't published yet. #}
+      {% set_global cur_perm = false %}
+      {% set_global cur_trans = [] %}
+      {% if section %}
+        {% set_global cur_perm = section.permalink %}
+        {% set_global cur_trans = section.translations %}
+      {% elif page %}
+        {% set_global cur_perm = page.permalink %}
+        {% set_global cur_trans = page.translations %}
+      {% endif %}
+      {% set_global url_en = "/" %}
+      {% set_global url_pt = "/pt-br/" %}
+      {% set_global url_es = "/es-es/" %}
+      {% if cur_perm %}
+        {% if lang == "en" %}{% set_global url_en = cur_perm %}{% endif %}
+        {% if lang == "pt-br" %}{% set_global url_pt = cur_perm %}{% endif %}
+        {% if lang == "es-es" %}{% set_global url_es = cur_perm %}{% endif %}
+      {% endif %}
+      {% for t in cur_trans %}
+        {% if t.lang == "en" %}{% set_global url_en = t.permalink %}{% endif %}
+        {% if t.lang == "pt-br" %}{% set_global url_pt = t.permalink %}{% endif %}
+        {% if t.lang == "es-es" %}{% set_global url_es = t.permalink %}{% endif %}
+      {% endfor %}
+
       {% if lang == "en" %}
         <span class="lang active">EN</span>
       {% else %}
-        <a class="lang" href="/">EN</a>
+        <a class="lang" href="{{ url_en }}">EN</a>
       {% endif %}
       <span class="sep">·</span>
       {% if lang == "pt-br" %}
         <span class="lang active">PT</span>
       {% else %}
-        <a class="lang" href="/pt-br/">PT</a>
+        <a class="lang" href="{{ url_pt }}">PT</a>
       {% endif %}
       <span class="sep">·</span>
       {% if lang == "es-es" %}
         <span class="lang active">ES</span>
       {% else %}
-        <a class="lang" href="/es-es/">ES</a>
+        <a class="lang" href="{{ url_es }}">ES</a>
       {% endif %}
     </div>
   </footer>
