@@ -48,14 +48,18 @@ ASSET="mclovin-linux-${ARCH}"
 SHA_ASSET="${ASSET}.sha256"
 
 # Resolve "latest" to the most recent tag (including pre-releases).
+# Uses the public Atom feed instead of the REST API — no auth, no
+# rate limit, and the entries are already sorted newest-first.
 if [ "$VERSION" = "latest" ]; then
-  VERSION=$(curl -fsSL "https://api.github.com/repos/${REPO}/releases" \
-    | grep -m1 '"tag_name"' \
-    | sed -E 's/.*"tag_name": *"([^"]+)".*/\1/')
+  VERSION=$(curl -fsSL "https://github.com/${REPO}/releases.atom" \
+    | grep -oE 'releases/tag/v[^"]+' \
+    | head -n1 \
+    | sed 's|releases/tag/||')
 fi
 
 if [ -z "$VERSION" ]; then
-  echo "error: could not resolve a release version from GitHub API" >&2
+  echo "error: could not resolve a release version from GitHub" >&2
+  echo "  Try pinning a tag: curl -fsSL https://mclovin.org/install.sh | bash -s v0.1.0-alpha.X" >&2
   exit 1
 fi
 
